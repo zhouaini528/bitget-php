@@ -30,8 +30,6 @@ class Request
 
     protected $options=[];
 
-    protected $authorization=false;
-
     public function __construct(array $data)
     {
         $this->key=$data['key'] ?? '';
@@ -58,22 +56,17 @@ class Request
      *
      * */
     protected function nonce(){
-        $this->nonce = date("Y-m-d\TH:i:s"). substr((string)microtime(), 1, 4) . 'Z';
+        $this->nonce = time()*1000;
     }
 
     /**
      *
      * */
     protected function signature(){
-        $path=$this->path;
-        if (strtoupper($this->type) == 'GET') {
-            $path .= $this->data ? '?'.http_build_query($this->data) : '';
-        }else{
-            $body = $this->data ? json_encode($this->data) : '';
-        }
+        if(empty($this->data)) $param='';
+        else $param=implode('&',$this->sort($this->data));
 
-        $message = $this->nonce.strtoupper($this->type).$path.($body ?? '');
-        $this->signature= hash_hmac('sha256', $message, $this->secret, false);
+        $this->signature=hash_hmac('md5',$param,sha1($this->secret));
     }
 
     /**
@@ -81,10 +74,11 @@ class Request
      * */
     protected function headers(){
         $this->headers= [
-            'Content-Type'=>'application/json',
+            /*'Content-Type'=>'application/json',
             "ACCESS-KEY"=>$this->key,
             "ACCESS-SIGN"=>$this->signature,
-            "ACCESS-TIMESTAMP"=>$this->nonce,
+            "ACCESS-TIMESTAMP"=>$this->nonce,*/
+            'User-Agent'=>'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36',
         ];
     }
 
@@ -112,14 +106,15 @@ class Request
     protected function send(){
         $client = new \GuzzleHttp\Client();
 
-        $url=$this->host.$this->path;
+        $url=$this->host.$this->path.'?'."sign=" . $this->signature . "&req_time=" . $this->nonce . "&accesskey=" . $this->key;
 
-        if($this->type=='GET') $url.= empty($this->data) ? '' : '?'.http_build_query($this->data);
-        else $this->options['body']=json_encode($this->data);
+        if($this->type=='GET') $url.= empty($this->data) ? '' : '&'.http_build_query($this->data);
+        else $this->options['form_params']=$this->data;
 
         /*echo $url.PHP_EOL;
         print_r($this->options);
         die;*/
+
         $response = $client->request($this->type, $url, $this->options);
 
         return $response->getBody()->getContents();
@@ -152,5 +147,20 @@ class Request
 
             throw new Exception(json_encode($temp));
         }
+    }
+
+    /**
+     * */
+    protected function sort($param)
+    {
+        $u = [];
+        $sort_rank = [];
+        foreach ($param as $k => $v) {
+            $u[] = $k . "=" . urlencode($v);
+            $sort_rank[] = ord($k);
+        }
+        asort($u);
+
+        return $u;
     }
 }

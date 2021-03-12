@@ -7,7 +7,9 @@ use Lin\Bitget\BitgetSpot;
 
 require __DIR__ .'../../../vendor/autoload.php';
 
-$bitget=new BitgetSpot();
+require 'key_secret.php';
+
+$bitget=new BitgetSpot($key,$secret);
 
 //You can set special needs
 $bitget->setOptions([
@@ -26,47 +28,19 @@ $bitget->setOptions([
     //'verify'=>false,
 ]);
 
-//Instruments
 try {
-    $result=$bitget->publics()->getTradePairList();
+    $result=$bitget->account()->get();
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
 
-
 try {
-    $result=$bitget->publics()->getTradePairOne([
-        'instrument_id'=>'BTC/USDT'
+    $result=$bitget->account()->getBalance([
+        'account_id'=>'2633392069',
     ]);
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
 
-try {
-    $result=$bitget->publics()->getDepth([
-        'instrument_id'=>'BTC/USDT',
-        'depth'=>5
-    ]);
-    print_r($result);
-}catch (\Exception $e){
-    print_r(json_decode($e->getMessage(),true));
-}
-
-
-try {
-    $result=$bitget->publics()->getTickerList();
-    print_r($result);
-}catch (\Exception $e){
-    print_r(json_decode($e->getMessage(),true));
-}
-
-try {
-    $result=$bitget->publics()->getTickerOne([
-        'instrument_id'=>'BTC/USDT',
-    ]);
-    print_r($result);
-}catch (\Exception $e){
-    print_r(json_decode($e->getMessage(),true));
-}

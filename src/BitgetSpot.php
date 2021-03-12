@@ -5,9 +5,11 @@
 
 namespace Lin\Bitget;
 
-use Lin\Bitget\Api\SpotV3\Privates;
-use Lin\Bitget\Api\SpotV3\Publics;
 
+use Lin\Bitget\Api\SpotV1\Account;
+use Lin\Bitget\Api\SpotV1\Common;
+use Lin\Bitget\Api\SpotV1\Market;
+use Lin\Bitget\Api\SpotV1\Order;
 
 class BitgetSpot
 {
@@ -17,7 +19,7 @@ class BitgetSpot
 
     protected $options=[];
 
-    function __construct(string $key='',string $secret='',string $host='https://openapi-exchange.Bitget.com'){
+    function __construct(string $key='',string $secret='',string $host='https://api.bitget.com'){
         $this->key=$key;
         $this->secret=$secret;
         $this->host=$host;
@@ -45,14 +47,22 @@ class BitgetSpot
     /**
      *
      * */
-    function privates(){
-        return new Privates($this->init());
+    function account(){
+        return new Account($this->init());
     }
 
     /**
      *
      * */
-    function publics(){
-        return new Publics($this->init());
+    function common(){
+        return new Common($this->init());
+    }
+
+    function market(){
+        return new Market($this->init());
+    }
+
+    function order(){
+        return new Order($this->init());
     }
 }
