@@ -1,0 +1,22 @@
+{
+    "name": "linwj/bitget",
+    "type": "library",
+    "description": "Coinbene API Like the official document interface, Support for arbitrary extension.",
+    "license": "MIT",
+    "keywords": ["bitget","coinbene","bigone","gate","coinbase","bitmex", "binance", "okex", "huobi","kucoin","kumex"],
+    "authors": [
+        {
+            "name": "linwenjun",
+            "email": "465382251@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lin\\Bitget\\": "./src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "*"
+    }
+}
