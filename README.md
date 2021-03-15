@@ -1,4 +1,4 @@
-### 建议您先阅读官方文档
+### It is recommended that you read the official document first
 
 Bitget Document 
 
