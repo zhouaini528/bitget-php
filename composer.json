@@ -1,7 +1,7 @@
 {
     "name": "linwj/bitget",
     "type": "library",
-    "description": "Coinbene API Like the official document interface, Support for arbitrary extension.",
+    "description": "Bitget API Like the official document interface, Support for arbitrary extension.",
     "license": "MIT",
     "keywords": ["bitget","coinbene","bigone","gate","coinbase","bitmex", "binance", "okex", "huobi","kucoin","kumex"],
     "authors": [
