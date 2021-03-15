@@ -27,7 +27,7 @@ $bitget->setOptions([
     //Close the certificate
     //'verify'=>false,
 ]);
-/*
+
 try {
     $result=$bitget->order()->postPlaceOrder([
         'symbol'=>'cmt_btcusdt',
@@ -42,7 +42,6 @@ try {
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-
 
 try {
     $result=$bitget->order()->postBatchOrders([
@@ -68,8 +67,7 @@ try {
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-*/
-/*
+
 try {
     $result=$bitget->order()->postCancelOrder([
         'symbol'=>'cmt_btcusdt',
@@ -79,8 +77,7 @@ try {
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-*/
-/*
+
 try {
     $result=$bitget->order()->postCancelBatchOrders([
         'symbol'=>'cmt_btcusdt',
@@ -90,8 +87,7 @@ try {
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-*/
-/*
+
 try {
     $result=$bitget->order()->getDetail([
         'symbol'=>'cmt_btcusdt',
@@ -101,7 +97,7 @@ try {
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
-*/
+
 
 try {
     $result=$bitget->order()->getHistory([
