@@ -6,23 +6,26 @@
 namespace Lin\Bitget;
 
 
-use Lin\Bitget\Api\SpotV1\Account;
-use Lin\Bitget\Api\SpotV1\Common;
-use Lin\Bitget\Api\SpotV1\Market;
-use Lin\Bitget\Api\SpotV1\Order;
+use Lin\Bitget\Api\SwapV3\Account;
+use Lin\Bitget\Api\SwapV3\Market;
+use Lin\Bitget\Api\SwapV3\Order;
+use Lin\Bitget\Api\SwapV3\Position;
+use Lin\Bitget\Api\SwapV3\Trace;
 
-class BitgetSpot
+class BitgetSwap
 {
     protected $key;
     protected $secret;
+    protected $passphrase;
     protected $host;
 
     protected $options=[];
 
-    function __construct(string $key='',string $secret='',string $host='https://api.bitget.com'){
+    function __construct(string $key='',string $secret='',string $passphrase='',string $host='https://capi.bitget.com'){
         $this->key=$key;
         $this->secret=$secret;
         $this->host=$host;
+        $this->passphrase=$passphrase;
     }
 
     /**
@@ -33,10 +36,11 @@ class BitgetSpot
             'key'=>$this->key,
             'secret'=>$this->secret,
             'host'=>$this->host,
+            'passphrase'=>$this->passphrase,
             'options'=>$this->options,
 
-            'platform'=>'spot',
-            'version'=>'v1',
+            'platform'=>'swap',
+            'version'=>'v3',
         ];
     }
 
@@ -54,18 +58,19 @@ class BitgetSpot
         return new Account($this->init());
     }
 
-    /**
-     *
-     * */
-    function common(){
-        return new Common($this->init());
-    }
-
     function market(){
         return new Market($this->init());
     }
 
     function order(){
         return new Order($this->init());
+    }
+
+    function position(){
+        return new Position($this->init());
+    }
+
+    function trace(){
+        return new Trace($this->init());
     }
 }
