@@ -12,8 +12,6 @@ Most of the interface is now complete, and the user can continue to extend it ba
 
 [中文文档](https://github.com/zhouaini528/bitget-php/blob/master/README_CN.md)
 
-### 其他交易所API
-
 ### Other exchanges API
 
 [Exchanges](https://github.com/zhouaini528/exchanges-php) It includes all of the following exchanges and is highly recommended.
