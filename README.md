@@ -6,7 +6,7 @@ Bitget Document
 
 [https://bitgetlimited.github.io/apidoc/en/swap/](https://bitgetlimited.github.io/apidoc/en/swap/)
 
-All interface methods are initialized the same as those provided by huobi. See details [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
+All interface methods are initialized the same as those provided by Bitget. See details [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
 
 Most of the interface is now complete, and the user can continue to extend it based on my design, working with me to improve it.
 

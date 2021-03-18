@@ -4,7 +4,7 @@ Bitget 文档1 [https://github.com/BitgetLimited](https://github.com/BitgetLimit
 
 Bitget 文档2 [https://bitgetlimited.github.io/apidoc/en/swap/](https://bitgetlimited.github.io/apidoc/en/swap/)
 
-所有接口方法的初始化都与coinbene提供的方法相同。更多细节 [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
+所有接口方法的初始化都与Bitget提供的方法相同。更多细节 [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
 
 大部分的接口已经完成，使用者可以根据我的设计方案继续扩展，欢迎与我一起迭代它。
 
