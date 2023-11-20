@@ -80,6 +80,7 @@ class Request
                 $this->signature=hash_hmac('md5',$param,sha1($this->secret));
                 break;
             }
+            case 'spot_v2':
             case 'swap':{
                 $param=$this->nonce.$this->type.$this->path;
 
@@ -106,6 +107,7 @@ class Request
                 ];
                 break;
             }
+            case 'spot_v2':
             case 'swap':{
                 $this->headers= [
                     'Content-Type'=>'application/json',
@@ -128,14 +130,6 @@ class Request
 
         $this->options['headers']=$this->headers;
         $this->options['timeout'] = $this->options['timeout'] ?? 60;
-
-        if(isset($this->options['proxy']) && $this->options['proxy']===true) {
-            $this->options['proxy']=[
-                'http'  => 'http://127.0.0.1:12333',
-                'https' => 'http://127.0.0.1:12333',
-                'no'    =>  ['.cn']
-            ];
-        }
     }
 
     /**
@@ -153,6 +147,7 @@ class Request
                 else $this->options['form_params']=$this->data;
                 break;
             }
+            case 'spot_v2':
             case 'swap':{
                 if($this->type=='GET') $url.= empty($this->data) ? '' : '?'.http_build_query($this->data);
                 else $this->options['body']=json_encode($this->data);
