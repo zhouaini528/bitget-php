@@ -3,15 +3,16 @@
  * @author lin <465382251@qq.com>
  * */
 
-use Lin\Bitget\BitgetSpotV2;
+use Lin\Bitget\BitgetContractV2;
 
 require __DIR__ .'../../../vendor/autoload.php';
+
 
 require 'key_secret.php';
 /*
  *
  * */
-$bitget=new BitgetSpotV2($key,$secret,$passphrase);
+$bitget=new BitgetContractV2($key,$secret,$passphrase);
 
 //You can set special needs
 $bitget->setOptions([
@@ -20,7 +21,9 @@ $bitget->setOptions([
 ]);
 
 try {
-    $result=$bitget->account()->getInfo();
+    $result=$bitget->account()->getAccounts([
+        'productType'=>'USDT-FUTURES'
+    ]);
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));

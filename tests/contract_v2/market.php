@@ -3,14 +3,11 @@
  * @author lin <465382251@qq.com>
  * */
 
-use Lin\Bitget\BitgetSpotV2;
+use Lin\Bitget\BitgetContractV2;
 
 require __DIR__ .'../../../vendor/autoload.php';
 
-
-require 'key_secret.php';
-
-$bitget=new BitgetSpotV2($key,$secret,$passphrase);
+$bitget=new BitgetContractV2();
 
 //You can set special needs
 $bitget->setOptions([
@@ -20,15 +17,9 @@ $bitget->setOptions([
 ]);
 
 try {
-    $result=$bitget->trade()->postPlaceOrder([
+    $result=$bitget->market()->getTicker([
         'symbol'=>'BTCUSDT',
-        'side'=>'sell',
-        'orderType'=>'limit',
-        'force'=>'gtc',
-
-        'price'=>'66666',
-        'size'=>'1',
-        //'clientOid'=>'**************',
+        'productType'=>'USDT-FUTURES'
     ]);
     print_r($result);
 }catch (\Exception $e){
@@ -36,11 +27,13 @@ try {
 }
 
 try {
-    $result=$bitget->trade()->getOrderInfo([
-        //'orderId'=>'***************',
-        'clientOid'=>'**************',
+    $result=$bitget->market()->getCandles([
+        'symbol'=>'BTCUSDT',
+        'granularity'=>'5m',
+        'productType'=>'USDT-FUTURES'
     ]);
     print_r($result);
 }catch (\Exception $e){
     print_r(json_decode($e->getMessage(),true));
 }
+

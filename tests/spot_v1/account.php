@@ -7,9 +7,15 @@ use Lin\Bitget\BitgetSpot;
 
 require __DIR__ .'../../../vendor/autoload.php';
 
-require 'key_secret.php';
 
-$bitget=new BitgetSpot($key,$secret);
+/*
+ *
+ * asdasd123Aa
+bg_a75dc076d9a80e807520b42673c7a738
+e7b820c9e81bc801a290c33847304960d5f96e69ae0a9fac06f9d46587a3da60
+ *
+ * */
+$bitget=new BitgetSpot('bg_a75dc076d9a80e807520b42673c7a738','e7b820c9e81bc801a290c33847304960d5f96e69ae0a9fac06f9d46587a3da60');
 
 //You can set special needs
 $bitget->setOptions([

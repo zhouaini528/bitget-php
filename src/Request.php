@@ -74,14 +74,13 @@ class Request
      * */
     protected function signature(){
         switch ($this->platform){
-            case 'spot':{
+            case 'spot_v1':{
                 if(empty($this->data)) $param='';
                 else $param=implode('&',$this->sort($this->data));
                 $this->signature=hash_hmac('md5',$param,sha1($this->secret));
                 break;
             }
-            case 'spot_v2':
-            case 'swap':{
+            default:{
                 $param=$this->nonce.$this->type.$this->path;
 
                 if($this->type=='POST'){
@@ -101,14 +100,13 @@ class Request
      * */
     protected function headers(){
         switch ($this->platform){
-            case 'spot':{
+            case 'spot_v1':{
                 $this->headers= [
                     'User-Agent'=>'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36',
                 ];
                 break;
             }
-            case 'spot_v2':
-            case 'swap':{
+            default:{
                 $this->headers= [
                     'Content-Type'=>'application/json',
                     "ACCESS-KEY"=>$this->key,
@@ -141,14 +139,13 @@ class Request
         $url=$this->host.$this->path;
 
         switch ($this->platform){
-            case 'spot':{
+            case 'spot_v1':{
                 $url.='?'."sign=" . $this->signature . "&req_time=" . $this->nonce . "&accesskey=" . $this->key;
                 if($this->type=='GET') $url.= empty($this->data) ? '' : '&'.http_build_query($this->data);
                 else $this->options['form_params']=$this->data;
                 break;
             }
-            case 'spot_v2':
-            case 'swap':{
+            default:{
                 if($this->type=='GET') $url.= empty($this->data) ? '' : '?'.http_build_query($this->data);
                 else $this->options['body']=json_encode($this->data);
                 break;
