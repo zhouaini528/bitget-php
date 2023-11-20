@@ -2,9 +2,7 @@
 
 Bitget Document 
 
-[https://github.com/BitgetLimited](https://github.com/BitgetLimited) 
-
-[https://bitgetlimited.github.io/apidoc/en/swap/](https://bitgetlimited.github.io/apidoc/en/swap/)
+[https://www.bitget.com/zh-CN/api-doc/common/intro](https://www.bitget.com/zh-CN/api-doc/common/intro)
 
 All interface methods are initialized the same as those provided by Bitget. See details [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
 

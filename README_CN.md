@@ -1,8 +1,6 @@
 ### 建议您先阅读官方文档
 
-Bitget 文档1 [https://github.com/BitgetLimited](https://github.com/BitgetLimited) 
-
-Bitget 文档2 [https://bitgetlimited.github.io/apidoc/en/swap/](https://bitgetlimited.github.io/apidoc/en/swap/)
+Bitget 文档1 [https://www.bitget.com/zh-CN/api-doc/common/intro](https://www.bitget.com/zh-CN/api-doc/common/intro)
 
 所有接口方法的初始化都与Bitget提供的方法相同。更多细节 [src/api](https://github.com/zhouaini528/bitget-php/tree/master/src/Api)
 
